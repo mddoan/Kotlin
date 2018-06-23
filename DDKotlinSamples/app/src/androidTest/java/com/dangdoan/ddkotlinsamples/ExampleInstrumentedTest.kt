@@ -1,4 +1,4 @@
-package com.dangdoan.ddkotlinsamples.ddkotlinsamples
+package com.dangdoan.ddkotlinsamples.main
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4

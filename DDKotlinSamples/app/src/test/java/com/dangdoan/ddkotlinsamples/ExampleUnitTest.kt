@@ -1,4 +1,4 @@
-package com.dangdoan.ddkotlinsamples.ddkotlinsamples
+package com.dangdoan.ddkotlinsamples.main
 
 import org.junit.Test
 

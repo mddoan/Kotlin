@@ -17,9 +17,37 @@ buildscript {
 
 allprojects {
     repositories {
-        google()
         jcenter()
+        google()
+        maven {
+            url "https://maven.google.com"
+        }
     }
+}
+
+// Libraries versions
+ext{
+    compileSDKVersion = 27
+    minSDKVersion = 19
+    targetSDKVersion = 27
+    buildToolsVersion = '27.0.3'
+    androidSupportVersion = '27.1.1'
+    constraintLayoutVersion = '1.1.2'
+    espressoVersion = '3.0.2'
+    testRunnerVersion = '1.0.2'
+    jUnitVersion = '4.12'
+}
+
+// Flavor definitions
+ext{
+    STRING  = "String"
+    INTEGER = "int"
+    BOOLEAN = "boolean"
+    TRUE    = "true"
+    FALSE   = "false"
+    FLAVOR_QA = "FLAVOR_QA"
+    FLAVOR_PROD = "FLAVOR_PROD"
+    variationDimension = "variation"
 }
 
 task clean(type: Delete) {

@@ -5,29 +5,58 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion rootProject.compileSDKVersion
+    buildToolsVersion rootProject.buildToolsVersion
     defaultConfig {
         applicationId "com.dangdoan.ddkotlinsamples.ddkotlinsamples"
-        minSdkVersion 19
-        targetSdkVersion 27
+        minSdkVersion rootProject.minSDKVersion
+        targetSdkVersion rootProject.targetSDKVersion
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        buildConfigField(BOOLEAN, FLAVOR_QA, FALSE)
+        buildConfigField(BOOLEAN, FLAVOR_PROD, FALSE)
     }
+
+    dexOptions {
+        preDexLibraries = true
+        jumboMode = true
+        javaMaxHeapSize "4g"
+    }
+
     buildTypes {
+        debug{
+
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+
+    def variation = rootProject.variationDimension
+    flavorDimensions(variation)
+
+    productFlavors {
+        envQA{
+            dimension variation
+            buildConfigField(BOOLEAN, FLAVOR_QA, TRUE)
+        }
+        envPROD{
+            dimension variation
+            buildConfigField(BOOLEAN, FLAVOR_PROD, TRUE)
+        }
+
     }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    implementation 'com.android.support:appcompat-v7:27.1.1'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation "com.android.support:appcompat-v7:$rootProject.androidSupportVersion"
+    implementation "com.android.support.constraint:constraint-layout:$rootProject.constraintLayoutVersion"
+    testImplementation "junit:junit:$rootProject.jUnitVersion"
+    androidTestImplementation "com.android.support.test:runner:$rootProject.testRunnerVersion"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:$rootProject.espressoVersion"
 }
