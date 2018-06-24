@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.util.Log
+import android.view.View
+import android.widget.Button
 import com.dangdoan.ddkotlinsamples.R
 
 
@@ -23,6 +25,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         Log.v(TAG, "onCreate()")
         setContentView(R.layout.activity_main)
+        val buttonDrawerActvity: Button = findViewById(R.id.buttonDrawerActvity)
+        buttonDrawerActvity.setOnClickListener(drawerActivityClick())
+
     }
 
     //new start 4
@@ -105,5 +110,10 @@ class MainActivity : AppCompatActivity() {
         //which = -2 if it is the negative button
         dialogBuilder.setNegativeButton("No"){dialog, which ->  cancelExit(dialog, which)}
         dialogBuilder.create().show()
+    }
+
+    fun drawerActivityClick(): View.OnClickListener = View.OnClickListener { view ->
+        var intent: Intent = Intent(this, DrawerActivity::class.java);
+        startActivity(intent)
     }
 }
