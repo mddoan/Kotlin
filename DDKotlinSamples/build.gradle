@@ -36,6 +36,8 @@ ext{
     espressoVersion = '3.0.2'
     testRunnerVersion = '1.0.2'
     jUnitVersion = '4.12'
+    volleyVersion = '1.1.0'
+    gSonVersion = '2.8.2'
 }
 
 // Flavor definitions
